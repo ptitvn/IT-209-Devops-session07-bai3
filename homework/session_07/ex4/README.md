@@ -215,7 +215,7 @@ Truy cập qua trình duyệt tại `http://160.187.229.76/` hiển thị thành
 
 ### 5.4. Kiểm tra Reverse Proxy Backend API (`curl http://localhost/api/health`)
 
-*(Để kiểm thử khi chưa mở ứng dụng Spring Boot thật, có thể chạy `./start_mock_backend.sh` để giả lập API tại port 8082)*
+*(Ứng dụng Java Spring Boot đang chạy ngầm trên máy chủ lắng nghe tại cổng 8082)*
 
 Lệnh kiểm tra Header:
 ```bash
