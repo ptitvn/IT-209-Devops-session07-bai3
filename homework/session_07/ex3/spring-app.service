@@ -1,0 +1,28 @@
+[Unit]
+Description=Spring Boot Application (spring-app) - port 8082
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=spring-runner
+Group=spring-runner
+WorkingDirectory=/opt/spring-app
+
+# Cấu hình cổng và kết nối database (Spring Boot đọc biến môi trường)
+Environment="SERVER_PORT=8082"
+Environment="SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/springboot_db"
+Environment="SPRING_DATASOURCE_USERNAME=spring-admin"
+Environment="SPRING_DATASOURCE_PASSWORD=SpringSecure@123"
+
+ExecStart=/usr/bin/java -jar /opt/spring-app/app.jar
+
+# Tự khởi động lại sau 10 giây nếu bị crash
+Restart=on-failure
+RestartSec=10
+
+# Java trả mã 143 khi nhận SIGTERM -> coi là thoát bình thường
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
